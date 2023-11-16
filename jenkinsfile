@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build image') {
+            steps {
+                script {
+                    echo 'Building the application...'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
+                        sh 'docker build -t bankolejohn/epistimis:1.0 .'
+                        sh "echo $PASSWORD | docker login -u $USER --password-stdin"
+                        sh 'docker push bankolejohn/epistimis:1.0'
+                    }
+                }
+            }
+        }
+
+        stage('test') {
+            steps {
+                echo 'testing the application'
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                script {
+                    echo "deploying the application on EC2"
+                    def dockerCmd = 'docker run -d -p 2000:3000 bankolejohn/epistimis:1.0'
+                    sshagent(['ec2-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@54.145.181.193 ${dockerCmd}"
+                    }
+                }
+            }
+        }
+    }
+}
