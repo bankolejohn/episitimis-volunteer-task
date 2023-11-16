@@ -7,9 +7,9 @@ pipeline {
                 script {
                     echo 'Building the application...'
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
-                        sh 'docker build -t bankolejohn/epistimis:1.0 .'
+                        sh 'docker build -t bankolejohn/epistimis:2.0 .'
                         sh "echo $PASSWORD | docker login -u $USER --password-stdin"
-                        sh 'docker push bankolejohn/epistimis:1.0'
+                        sh 'docker push bankolejohn/epistimis:2.0'
                     }
                 }
             }
