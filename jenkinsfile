@@ -25,9 +25,9 @@ pipeline {
             steps {
                 script {
                     echo "deploying the application on EC2"
-                    def dockerCmd = 'docker run -d -p 2000:3000 bankolejohn/epistimis:2.0'
+                    def dockerCmd = 'docker run -d -p 2000:80 bankolejohn/epistimis:2.0'
                     sshagent(['ec2-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@54.145.181.193 ${dockerCmd}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@54.221.99.36 ${dockerCmd}"
                     }
                 }
             }
