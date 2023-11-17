@@ -27,7 +27,7 @@ pipeline {
                     echo "deploying the application on EC2"
                     def dockerCmd = 'docker run -d -p 2000:80 bankolejohn/epistimis:2.0'
                     sshagent(['ec2-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@52.91.55.156 ${dockerCmd}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@35.171.167.243 ${dockerCmd}"
                     }
                 }
             }
