@@ -57,8 +57,8 @@ No specific testing is implemented in this project. Consider implementing testin
 ## Troubleshooting
 
 . If encountering Docker permission issues on the Jenkins server, run:
-docker exec -u 0 -it <container-id> bash
-chmod 666 /var/run/docker.sock
+    `docker exec -u 0 -it <container-id> bash`
+    `chmod 666 /var/run/docker.sock`
 . Ensure correct security group rules on the EC2 instance.
 . Ensure Docker is logged in on the target EC2 instance.
 
