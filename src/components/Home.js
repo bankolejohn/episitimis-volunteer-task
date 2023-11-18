@@ -10,7 +10,7 @@ function Home() {
     <div className="home" css={CSS}>
       <div className="banner">
         <div className="headline">
-          <h1>Welcome to Devops project Bank!</h1>
+          <h1>Welcome to EPISTIMIS Devops project Bank!</h1>
           <p>Mission Critical Task...</p>
         </div>
         <div className="image">
