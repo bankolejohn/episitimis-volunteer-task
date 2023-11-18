@@ -20,9 +20,9 @@ AWS account
 1. Create an EC2 Ubuntu instance (t3 medium) with security group allowing SSH (port 22) and Jenkins access (port 8080).
 2. SSH into the instance and install Docker:
 
-    sudo apt update
+    `sudo apt update
     sudo apt install docker.io -y
-    sudo docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+    sudo docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts`
 
 3. Access Jenkins by visiting <ip-address-of-your-instance>:8080, retrieve the initial password, and complete the setup.
 4. Set up your security group allow for port 8080
