@@ -2,6 +2,16 @@ pipeline {
     agent any
     
     stages {
+
+        stage ('Checkout SCM') {
+            steps {
+                script {
+                    git credentialsId: 'Github'
+                    url: 'https://github.com/bankolejohn/episitimis-volunteer-task.git'
+                    branch: 'main'
+                }
+            }
+        }
         stage('Build image') {
             steps {
                 script {
