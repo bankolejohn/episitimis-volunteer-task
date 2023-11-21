@@ -6,6 +6,7 @@ pipeline {
         stage ('Checkout SCM') {
             steps {
                 script {
+                    //access github
                     //git credentialsId: 'Github'
                     url: 'https://github.com/bankolejohn/episitimis-volunteer-task.git'
                     branch: 'main'
