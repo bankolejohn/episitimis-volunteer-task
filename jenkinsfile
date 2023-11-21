@@ -7,9 +7,8 @@ pipeline {
             steps {
                 script {
                     //access github
-                    git credentialsId: 'Github'
-                    url: 'https://github.com/bankolejohn/episitimis-volunteer-task.git'
-                    branch: 'main'
+                    git branch: 'main', url: 'https://github.com/bankolejohn/episitimis-volunteer-task.git'
+                    
                 }
             }
         }
