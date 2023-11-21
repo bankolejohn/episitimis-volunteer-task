@@ -6,7 +6,7 @@ pipeline {
         stage ('Checkout SCM') {
             steps {
                 script {
-                    git credentialsId: 'Github'
+                    //git credentialsId: 'Github'
                     url: 'https://github.com/bankolejohn/episitimis-volunteer-task.git'
                     branch: 'main'
                 }
@@ -17,9 +17,9 @@ pipeline {
                 script {
                     echo 'Building the application...'
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
-                        sh 'docker build -t bankolejohn/epistimis:2.1 .'
+                        sh 'docker build -t bankolejohn/epistimis:2.2 .'
                         sh "echo $PASSWORD | docker login -u $USER --password-stdin"
-                        sh 'docker push bankolejohn/epistimis:2.1'
+                        sh 'docker push bankolejohn/epistimis:2.2'
                     }
                 }
             }
@@ -35,9 +35,9 @@ pipeline {
             steps {
                 script {
                     echo "deploying the application on EC2"
-                    def dockerCmd = 'docker run -d -p 2000:80 bankolejohn/epistimis:2.1'
+                    def dockerCmd = 'docker run -d -p 2000:80 bankolejohn/epistimis:2.2'
                     sshagent(['ec2-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@54.198.41.77 ${dockerCmd}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@54.159.102.213 ${dockerCmd}"
                     }
                 }
             }
